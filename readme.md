@@ -28,7 +28,7 @@ public class TesteApplication {
 In your class:
 
 ```
-import static br.com.rformagio.observability.logging.logger.LoggerCustom.*;
+import static LoggerCustom.*;
 ```
 
 And so....you have some choices:
@@ -117,7 +117,7 @@ Some examples:
   "level" : "INFO",
   "applicationName" : "teste-api",
   "threadName" : "http-nio-8081-exec-5",
-  "loggerName" : "br.com.rformagio.observability.logging.logger.LoggerHttp",
+  "loggerName" : "LoggerHttp",
   "type" : "REQUEST",
   "request" : {
     "method" : "GET",
@@ -182,7 +182,7 @@ logInfoObject("person", p, "Person found!!!")
   "level" : "INFO",
   "applicationName" : "teste-api",
   "threadName" : "http-nio-8081-exec-5",
-  "loggerName" : "br.com.rformagio.microservice.person.controller.HelloController",
+  "loggerName" : "HelloController",
   "type" : "CUSTOM",
   "person" : {
     "name" : "Rodrigo",

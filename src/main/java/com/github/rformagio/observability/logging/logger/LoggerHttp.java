@@ -1,7 +1,7 @@
-package br.com.rformagio.observability.logging.logger;
+package com.github.rformagio.observability.logging.logger;
 
-import br.com.rformagio.observability.logging.model.RequestContent;
-import br.com.rformagio.observability.logging.model.ResponseContent;
+import com.github.rformagio.observability.logging.model.RequestContent;
+import com.github.rformagio.observability.logging.model.ResponseContent;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
@@ -26,7 +26,7 @@ public class LoggerHttp {
             " || @annotation(org.springframework.web.bind.annotation.PostMapping)" +
             " || @annotation(org.springframework.web.bind.annotation.PutMapping)" +
             " || @annotation(org.springframework.web.bind.annotation.PatchMapping)) " +
-            " && @annotation(br.com.rformagio.observability.annotation.EnableRequestResponseLogging)")
+            " && @annotation(com.github.rformagio.observability.annotation.EnableRequestResponseLogging)")
     public void doAction() {}
 
 

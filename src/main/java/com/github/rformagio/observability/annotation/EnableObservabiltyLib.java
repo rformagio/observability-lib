@@ -1,6 +1,6 @@
-package br.com.rformagio.observability.annotation;
+package com.github.rformagio.observability.annotation;
 
-import br.com.rformagio.observability.config.ConfigApplication;
+import com.github.rformagio.observability.config.ConfigApplication;
 import org.springframework.context.annotation.Import;
 
 import java.lang.annotation.ElementType;

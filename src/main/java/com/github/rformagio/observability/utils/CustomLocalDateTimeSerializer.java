@@ -1,4 +1,4 @@
-package br.com.rformagio.utils;
+package com.github.rformagio.observability.utils;
 
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonProcessingException;

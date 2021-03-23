@@ -1,4 +1,4 @@
-package br.com.rformagio.utils;
+package com.github.rformagio.observability.utils;
 
 public interface Constants {
 

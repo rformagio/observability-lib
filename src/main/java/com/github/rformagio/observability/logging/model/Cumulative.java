@@ -1,6 +1,6 @@
-package br.com.rformagio.observability.logging.model;
+package com.github.rformagio.observability.logging.model;
 
-import br.com.rformagio.utils.LogLevel;
+import com.github.rformagio.observability.utils.LogLevel;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,10 +1,10 @@
-package br.com.rformagio.observability.logging;
+package com.github.rformagio.observability.logging;
 
-import br.com.rformagio.observability.config.ConfigApplication;
-import br.com.rformagio.observability.config.ConfigProperties;
-import br.com.rformagio.utils.Constants;
-import br.com.rformagio.utils.CustomLocalDateTimeDeserializer;
-import br.com.rformagio.utils.CustomLocalDateTimeSerializer;
+import com.github.rformagio.observability.config.ConfigApplication;
+import com.github.rformagio.observability.config.ConfigProperties;
+import com.github.rformagio.observability.utils.Constants;
+import com.github.rformagio.observability.utils.CustomLocalDateTimeDeserializer;
+import com.github.rformagio.observability.utils.CustomLocalDateTimeSerializer;
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.LayoutBase;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -13,13 +13,12 @@ import com.fasterxml.jackson.core.util.DefaultIndenter;
 import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import com.github.rformagio.observability.utils.LogTools;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 
 import java.time.LocalDateTime;
 import java.util.LinkedHashMap;
 import java.util.Map;
-
-import static br.com.rformagio.utils.LogTools.*;
 
 public class LogFlexJsonLayout extends LayoutBase<ILoggingEvent> {
 
@@ -61,7 +60,7 @@ public class LogFlexJsonLayout extends LayoutBase<ILoggingEvent> {
         logContent.put(KEY_LEVEL, event.getLevel().levelStr);
         logContent.put(KEY_APPLICATION_NAME, configProperties.getApplicationName());
         logContent.put(KEY_THREAD_NAME, event.getThreadName());
-        logContent.put(KEY_EXCEPTION, getExceptions(event));
+        logContent.put(KEY_EXCEPTION, LogTools.getExceptions(event));
         logContent.put(KEY_CORRELATION_ID, event.getMDCPropertyMap().get(Constants.CORRELATION_ID_KEY_NAME));
 
         try {

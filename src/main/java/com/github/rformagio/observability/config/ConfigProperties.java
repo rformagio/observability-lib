@@ -1,4 +1,4 @@
-package br.com.rformagio.observability.config;
+package com.github.rformagio.observability.config;
 
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Value;

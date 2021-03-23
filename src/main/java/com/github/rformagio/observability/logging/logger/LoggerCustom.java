@@ -1,7 +1,7 @@
-package br.com.rformagio.observability.logging.logger;
+package com.github.rformagio.observability.logging.logger;
 
-import br.com.rformagio.utils.LogLevel;
-import br.com.rformagio.utils.LogType;
+import com.github.rformagio.observability.utils.LogLevel;
+import com.github.rformagio.observability.utils.LogType;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.HashMap;

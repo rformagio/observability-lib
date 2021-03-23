@@ -1,12 +1,12 @@
-package br.com.rformagio.observability.logging;
+package com.github.rformagio.observability.logging;
 
-import br.com.rformagio.observability.logging.logger.LoggerCumulative;
-import br.com.rformagio.observability.logging.logger.LoggerCustom;
-import br.com.rformagio.observability.logging.logger.LoggerHttp;
-import br.com.rformagio.observability.logging.model.Cumulative;
-import br.com.rformagio.observability.logging.model.RequestContent;
-import br.com.rformagio.observability.logging.model.ResponseContent;
-import br.com.rformagio.utils.LogType;
+import com.github.rformagio.observability.logging.logger.LoggerCumulative;
+import com.github.rformagio.observability.logging.logger.LoggerCustom;
+import com.github.rformagio.observability.logging.logger.LoggerHttp;
+import com.github.rformagio.observability.logging.model.Cumulative;
+import com.github.rformagio.observability.logging.model.RequestContent;
+import com.github.rformagio.observability.logging.model.ResponseContent;
+import com.github.rformagio.observability.utils.LogType;
 import ch.qos.logback.classic.spi.ILoggingEvent;
 
 import java.util.Map;

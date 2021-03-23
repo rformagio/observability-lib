@@ -1,4 +1,4 @@
-package br.com.rformagio.observability.logging.model;
+package com.github.rformagio.observability.logging.model;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;

@@ -1,6 +1,6 @@
-package br.com.rformagio.observability.config;
+package com.github.rformagio.observability.config;
 
-import br.com.rformagio.observability.logging.logger.LoggerHttp;
+import com.github.rformagio.observability.logging.logger.LoggerHttp;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;

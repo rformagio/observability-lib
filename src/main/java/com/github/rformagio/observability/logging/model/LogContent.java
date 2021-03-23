@@ -1,9 +1,7 @@
-package br.com.rformagio.observability.logging.model;
+package com.github.rformagio.observability.logging.model;
 
-import br.com.rformagio.utils.CustomLocalDateTimeSerializer;
-import com.fasterxml.jackson.annotation.JsonFormat;
+import com.github.rformagio.observability.utils.CustomLocalDateTimeSerializer;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonRawValue;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.*;
 

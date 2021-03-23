@@ -1,4 +1,4 @@
-package br.com.rformagio.utils;
+package com.github.rformagio.observability.utils;
 
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.classic.spi.StackTraceElementProxy;
