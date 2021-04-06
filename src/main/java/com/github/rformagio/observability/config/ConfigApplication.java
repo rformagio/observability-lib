@@ -9,8 +9,7 @@ import org.springframework.context.annotation.Configuration;
 
 import java.util.Objects;
 
-@ComponentScan(basePackageClasses = ConfigProperties.class)
-@ComponentScan(basePackageClasses = LoggerHttp.class)
+@ComponentScan(basePackageClasses = {ConfigProperties.class, ConfigFilter.class, LoggerHttp.class})
 @Configuration
 public class ConfigApplication implements ApplicationContextAware {
 

@@ -12,7 +12,7 @@ import java.time.format.DateTimeFormatter;
 public class CustomLocalDateTimeSerializer extends StdSerializer<LocalDateTime> {
 
     private static DateTimeFormatter formatter =
-            DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+            DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
     public CustomLocalDateTimeSerializer() {
         this(null);

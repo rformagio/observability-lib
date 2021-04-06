@@ -4,15 +4,23 @@ I hope this library can help with some metrics and logging features. For while,
 only logging features is available.
 It uses *Spring boot*.
 
-The logging feature uses logback and it allows you to log in a flexible JSON layout. It can be very useful for Splunk. 
+The logging feature uses logback and it allows you to log data in a flexible JSON layout. It can be very useful for Splunk. 
 
 
 ### How to use
 
-You must put in your dependencies. 
+For start, you must put in your dependencies:
+```xml
+<dependency>
+    <groupId>com.github.rformagio</groupId>
+    <artifactId>observability-lib</artifactId>
+    <version>1.1</version>
+</dependency>
+```
+ 
 To enable, put the annotation *EnableObservabiltyLib* in your Application class.
 
-```
+``` java
 @EnableObservabiltyLib
 @SpringBootApplication
 public class TesteApplication {
@@ -68,15 +76,22 @@ logInfoProperty( "key", "value", "Your message here!");
 ```
 
 You can do some configuration in your *application.yaml* :
-```
+``` yaml
 app:
   observability:
-    applicationName: 'testeApplication'
+    applicationName: 'teste-api'
+    correlationIdFilter:
+      enabled: true
+      order: 1
+      headerName: 'X-CORRELATION_ID'
+      resources:
+        - '/api/hello/*'
+        - '/api/teste/'
 ```
 
 You also can log your Request/Response. Just put the annotation *@EnableRequestResponseLogging* in your method. For exemplo:
 
-```
+``` java
  @GetMapping("/{msg}")
     @ResponseStatus(HttpStatus.FOUND)
     @EnableRequestResponseLogging
@@ -191,7 +206,22 @@ logInfoObject("person", p, "Person found!!!")
   }
 }
 ```
+ In a 1.1 version, you also can enable the Correlation Id Filter:
+``` yaml
+app:
+  observability:
+    applicationName: 'teste-api'
+    correlationIdFilter:
+      enabled: true
+      order: 1
+      headerName: 'X-CORRELATION_ID'
+      resources:
+        - '/api/hello/*'
+        - '/api/teste/'
 
+```
 
+You can config a header name, where your correlation id comes from. The order field is 
+the spring boot load order. And the resources are the urls you want to filter.
 
 
