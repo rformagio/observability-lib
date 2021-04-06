@@ -6,7 +6,7 @@
 
     <groupId>com.github.rformagio</groupId>
     <artifactId>observability-lib</artifactId>
-    <version>1.0</version>
+    <version>1.1</version>
     <name>Observability Library</name>
     <packaging>jar</packaging>
     <description>Observability Library</description>
