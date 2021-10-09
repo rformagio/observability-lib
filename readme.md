@@ -32,7 +32,50 @@ public class TesteApplication {
 }
 
 ``` 
+In your class...
 
+... add the _import_ 
+
+```
+import static com.github.rformagio.observability.logging.logger.core.LogItem.*;
+```
+
+...and put the annotation _@Sl4j_
+
+And so, you can use log:
+
+```
+log.info( "Some message", li("key", "value");
+```
+
+Or
+
+```
+log.info( "Some message", li("key", Object));
+```
+Or
+```
+log.info( "Some message", li("key", "value"), li("key2", "value2"));
+```
+
+You can normally use _info_, _error_, _debug_, _warn_, etc, and put as many properties as you want!
+
+Ex:
+```json
+{
+  "timestamp" : "2021-10-09 16:07:09",
+  "level" : "INFO",
+  "applicationName" : "teste-api",
+  "threadName" : "http-nio-8081-exec-8",
+  "correlationId" : "977e077f-5f15-4702-b11a-1ab3b6538604",
+  "loggerName" : "",
+  "logType" : "DEFAULT",
+  "message" : "Some message",
+  "key" : "value",
+  "key2" : "value2"
+}
+```
+There is a pratically depracated called _LoggerCustom_.
 In your class:
 
 ```
@@ -115,7 +158,60 @@ Some fields are fixed:
 }
 ```
 
-There area four types:
+There is a cumulative log. You can accumulate messages, propeties, exceptions....and at the end of your execution, 
+you finally log!!
+
+```java
+
+public class Sample {
+    
+    public void  method(){
+        LoggerCumulative logger = LoggerCumulative.init(LogLevel.INFO);
+        
+        //...
+        logger.logDescription("Some description or message or ....");
+        //...
+        logger.addMessage("message1", "Description or message or put some object ....");
+        //...
+        logger.addException("exception1", Exception);
+        //...
+        logger.addProperty("key", "value or some object");
+        //...
+        logger.log();
+        
+    }
+}
+```
+The log:
+
+```json
+{
+  "timestamp" : "2021-10-09 16:07:15",
+  "level" : "INFO",
+  "applicationName" : "teste-api",
+  "threadName" : "http-nio-8081-exec-8",
+  "correlationId" : "977e077f-5f15-4702-b11a-1ab3b6538604",
+  "loggerName" : "com.github.rformagio.observability.logging.logger.LoggerCumulative",
+  "logType" : "CUMULATIVE",
+  "cumulative" : {
+    "initTime" : "2021-10-09 16:06:55",
+    "endTime" : "2021-10-09 16:07:14",
+    "duration" : 18.644000000,
+    "description" : "Some description",
+    "messages" : {
+      "message1" : "Hello! I am here!",
+      "message2" : "Hello! I am here, now!"
+      },
+    "exceptions" : {
+      "exception1" : "Exception message",
+      "exception2" : "Exception message"
+    },
+    "level" : "INFO"
+  }
+}
+```
+
+There are five types:
 
 DEFAULT: when you use Sl4j method, like ```log.info() ```
 
@@ -123,6 +219,7 @@ CUSTOM: when you use some method, like ``` logInfoObject()```
 
 REQUEST or RESPONSE: when the application is logging *requests* or *responses*.
 
+CUMULATIVE
 
 Some examples:
 

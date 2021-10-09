@@ -3,13 +3,18 @@ package com.github.rformagio.observability.logging;
 import com.github.rformagio.observability.logging.logger.LoggerCumulative;
 import com.github.rformagio.observability.logging.logger.LoggerCustom;
 import com.github.rformagio.observability.logging.logger.LoggerHttp;
+import com.github.rformagio.observability.logging.logger.core.LogItem;
 import com.github.rformagio.observability.logging.model.Cumulative;
 import com.github.rformagio.observability.logging.model.RequestContent;
 import com.github.rformagio.observability.logging.model.ResponseContent;
 import com.github.rformagio.observability.utils.LogType;
 import ch.qos.logback.classic.spi.ILoggingEvent;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 public class FlexContentComponent {
 
@@ -17,7 +22,7 @@ public class FlexContentComponent {
     private static final String LOGGER_HTTP         = LoggerHttp.class.getTypeName();
     private static final String LOGGER_CUMULATIVE   = LoggerCumulative.class.getTypeName();
 
-    private static final String KEY_TYPE                = "type";
+    private static final String KEY_TYPE                = "logType";
     private static final String KEY_LOGGER_NAME         = "loggerName";
     private static final String KEY_MESSAGE             = "message";
     private static final String KEY_REQUEST_CONTENT     = "request";
@@ -81,6 +86,8 @@ public class FlexContentComponent {
         map.put(KEY_LOGGER_NAME, event.getLoggerName());
         map.put(KEY_TYPE, LogType.DEFAULT);
         map.put(KEY_MESSAGE, event.getFormattedMessage());
+        map.putAll(getAllLogItemsAsMap(event));
+
     }
 
     private String getMessage(ILoggingEvent event) {
@@ -90,6 +97,25 @@ public class FlexContentComponent {
         }
 
         return null;
+    }
+
+    private Map<String, Object> getAllLogItemsAsMap(ILoggingEvent event) {
+        Map<String, Object> subMap;
+        try {
+            if (event.getArgumentArray() != null) {
+                subMap = Arrays.stream(event.getArgumentArray())
+                        .filter(a -> a instanceof LogItem)
+                        .collect(
+                                Collectors.toMap(e -> ((LogItem) e).getKey(), e -> ((LogItem) e).getValue())
+                        );
+            } else {
+                subMap = Collections.EMPTY_MAP;
+            }
+        } catch (Exception e) {
+            subMap = Collections.singletonMap("LOG_ERROR", "Duplicated keys are not allowed in log!! (Exception: " + e.getMessage() + ")");
+        }
+
+        return subMap;
     }
 
 }

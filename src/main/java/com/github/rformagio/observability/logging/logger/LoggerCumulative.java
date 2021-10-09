@@ -30,7 +30,7 @@ public class LoggerCumulative {
 
     public void log() {
         cumulative.setEndTime(LocalDateTime.now());
-        cumulative.setDuration(Duration.between(cumulative.getEndTime(), cumulative.getInitTime()));
+        cumulative.setDuration(Duration.between(cumulative.getInitTime(), cumulative.getEndTime()));
         terminate();
     }
 
