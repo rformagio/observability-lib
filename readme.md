@@ -18,6 +18,15 @@ For start, you must put in your dependencies:
 </dependency>
 ```
  
+In your logback config file:
+```xml
+       <encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
+            <layout class="com.github.rformagio.observability.logging.LogFlexJsonLayout">
+            </layout>
+        </encoder>
+```
+
+
 To enable, put the annotation *EnableObservabiltyLib* in your Application class.
 
 ``` java
@@ -146,7 +155,7 @@ You also can log your Request/Response. Just put the annotation *@EnableRequestR
 
 Some fields are fixed:
 
-```
+```json
 {
   "timestamp" : "2021-03-21 16:56",
   "level" : "INFO",
@@ -303,7 +312,7 @@ logInfoObject("person", p, "Person found!!!")
   }
 }
 ```
- In a 1.1 version, you also can enable the Correlation Id Filter:
+ Since a 1.1 version, you also can enable the Correlation Id Filter:
 ``` yaml
 app:
   observability:
@@ -321,4 +330,12 @@ app:
 You can config a header name, where your correlation id comes from. The order field is 
 the spring boot load order. And the resources are the urls you want to filter.
 
+Since 1.3 version you can choose if you want indent log by using config property at logback:
 
+```xml
+       <encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
+            <layout class="com.github.rformagio.observability.logging.LogFlexJsonLayout">
+                <indentOutput>true</indentOutput>
+            </layout>
+        </encoder>
+```

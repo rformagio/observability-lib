@@ -35,6 +35,12 @@ public class LogFlexJsonLayout extends LayoutBase<ILoggingEvent> {
 
     private final DefaultPrettyPrinter prettyPrinter;
 
+    private boolean indentOutput = false;
+
+    public void setIndentOutput(boolean indentOutput) {
+        this.indentOutput = indentOutput;
+    }
+
     public LogFlexJsonLayout() {
         prettyPrinter = new DefaultPrettyPrinter();
         prettyPrinter.indentArraysWith(DefaultIndenter.SYSTEM_LINEFEED_INSTANCE);
@@ -44,8 +50,18 @@ public class LogFlexJsonLayout extends LayoutBase<ILoggingEvent> {
                 .serializerByType(LocalDateTime.class, new CustomLocalDateTimeSerializer())
                 .deserializerByType(LocalDateTime.class, new CustomLocalDateTimeDeserializer())
                 .build();
-        mapper.enable(SerializationFeature.INDENT_OUTPUT);
+
         mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+
+    }
+
+    @Override
+    public void start() {
+        if(indentOutput) {
+            mapper.writer(prettyPrinter);
+            mapper.enable(SerializationFeature.INDENT_OUTPUT);
+        }
+        super.start();
     }
 
 
@@ -79,7 +95,8 @@ public class LogFlexJsonLayout extends LayoutBase<ILoggingEvent> {
     }
 
     private String toJson(Map<String, Object> map) throws JsonProcessingException {
-        return mapper.writer(prettyPrinter).writeValueAsString(map);
+            //return mapper.writer(prettyPrinter).writeValueAsString(map);
+        return mapper.writeValueAsString(map);
     }
 
     private String getErrorMessage(JsonProcessingException jpe) {
